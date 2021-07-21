@@ -1,11 +1,11 @@
 from flask import Flask, jsonify, request, make_response
 from flask.helpers import make_response
-from flask_restful import Resource, Api
+# from flask_restful import Resource, Api
 from flask_mongoengine import MongoEngine
 from password import db_pass
 
 app = Flask(__name__)
-api = Api(app)
+# api = Api(app)
 
 db_name = 'user_db'
 app.config["MONGODB_HOST"] = "mongodb+srv://admin:{}@cluster0.o4tig.mongodb.net/{}?retryWrites=true&w=majority".format(db_pass, db_name)
@@ -13,12 +13,10 @@ app.config["MONGODB_HOST"] = "mongodb+srv://admin:{}@cluster0.o4tig.mongodb.net/
 db = MongoEngine(app)
 
 class Interest(db.EmbeddedDocument):
-    # _id = db.IntField()
     name = db.StringField()
     priority = db.StringField()
 
 class users(db.Document):
-    # _id = db.IntField()
     first_name = db.StringField()
     last_name = db.StringField()
     email = db.StringField()
